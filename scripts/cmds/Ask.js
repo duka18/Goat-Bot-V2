@@ -34,9 +34,9 @@ async function getAIResponse(input, userName, userId, messageID) {
 module.exports = {
   config: {
     name: 'ask',
-    author: 'Shizuka junior',
+    author: 'David mpongo',
     role: 0,
-    category: 'ai',
+    category: 'ask',
     shortDescription: 'ask to ask anything',
   },
   onStart: async function ({ api, event, args }) {

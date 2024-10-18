@@ -3,7 +3,7 @@ const axios = require("axios");
 const path = require("path");
 const { getPrefix } = global.utils;
 const { commands, aliases } = global.GoatBot;
-const doNotDelete = "[ ☆ | 🦅 •𝙳𝚊𝚟𝚒𝚍 ✰ 𝚖𝚙𝚘𝚗𝚐𝚘 • 🦅| ☆]"; // changing this wont change the goatbot V2 of list cmd it is just a decoyy
+const doNotDelete = "[ ❦ | ت︎ •𝐆𝐀𝐁𝐈𝐌𝐀𝐑𝐔 𝐂𝐌𝐃• ت︎| ❦]"; // changing this wont change the goatbot V2 of list cmd it is just a decoyy
 module.exports = {
 	config: {
 		name: "help2",
@@ -33,7 +33,7 @@ module.exports = {
 			const categories = {};
 			let msg = "";
 
-			msg += `\n\n    🦅══𝙳𝚊𝚟𝚒𝚍✧𝙱𝚘𝚝══🦅
+			msg += `\n\n    ㋛══✞𝖙𝖍𝖊 𝖛𝖔𝖎𝖉 𝖇𝖔𝖙✞══㋛
 
  `; // replace with your name 
 
@@ -47,35 +47,31 @@ module.exports = {
 
 			Object.keys(categories).forEach((category) => {
 				if (category !== "info") {
-					msg += `\n╭━✰${category.toUpperCase()}✰ `;
+					msg += `\n╭━ ℘ ${category.toUpperCase()}℘ `;
 
 
 					const names = categories[category].commands.sort();
 					for (let i = 0; i < names.length; i += 3) {
-						const cmds = names.slice(i, i + 3).map((item) => ` ★${item}`);
+						const cmds = names.slice(i, i + 3).map((item) => ` 🎐🔖➳${item} ت︎`);
 						msg += `\n│${cmds.join(" ".repeat(Math.max(1, 10 - cmds.join("").length)))}`;
 					}
 
-					msg += `\n╰────────────✰`;
+					msg += `\n╰────────────🜋 `;
 				}
 			});
 
 			const totalCommands = commands.size;
-			msg += `\n𝙳𝚊𝚟𝚒𝚍☆𝐁𝐨𝐭 𝐡𝐚𝐬  ${totalCommands} 𝐜𝐨𝐦𝐦𝐚𝐧𝐝𝐬 ✔\n`;
+			msg += `\n☞ 𝐀𝐜𝐭𝐮𝐞𝐥𝐥𝐞𝐦𝐞𝐧𝐭 𝐥𝐞 𝐛𝐨𝐭 𝐝𝐢𝐬𝐩𝐨𝐬𝐞 𝐝𝐞 〖${totalCommands}〗 𝐜𝐦𝐝𝐬\n`;
 			msg += `${prefix}𝐡𝐞𝐥𝐩 𝐭𝐨 𝐥𝐨𝐨𝐤 𝐜𝐦𝐝𝐬\n`;
           msg += `𝐀𝐧𝐲 𝐩𝐫𝐨𝐛𝐥𝐞𝐦 𝐫𝐞𝐥𝐚𝐭𝐞𝐝 𝐭𝐨 𝐛𝐨𝐭 𝐭𝐡𝐞𝐧 𝐮𝐬𝐞 ${prefix}𝐜𝐚𝐥𝐥𝐚𝐝\n`;
-			msg += `Admin :👑☆𝙳𝚊𝚟𝚒𝚍☆𝙼𝚙☆\n\n`; // its not decoy so change it if you want
-          msg += `           𝙳𝚊𝚟𝚒𝚍 𝚊𝚒𝚐𝚕𝚎 𝚛𝚘𝚢𝚊𝚕
+			msg += `㋛𝖑𝖆 𝖛𝖎𝖊 𝖊𝖘𝖙 𝖇𝖎𝖊𝖓 𝖙𝖗𝖎𝖘𝖙𝖊 𝖘𝖊𝖚𝖑 🛀\n\n`; // its not decoy so change it if you want
+          msg += ` ●═════❍═════●\n[👑| 𝐓𝐇𝐄 𝐕𝐎𝐈𝐃 ]\n●═════❍═════●`;
 
-ᕯᕯ𝒎𝒂𝒅𝒆 𝒃𝒚ᕯᕯ 
-
-[👑| 𝙳𝚊𝚟𝚒𝚍☆𝙼𝚙 ]`;
-
-msg += `𝐅𝐛: m.me/100092277325670 ✰`;
+msg += `[🗝️]▪𝗟𝗜𝗡𝗞-𝗙𝗕: https://www.facebook.com/profile.php?id=100084918384589 シ`;
 
 
 
-msg+= `🦅══ 𝙳𝚊𝚟𝚒𝚍 ✰ 𝚋𝚘𝚝 ══🦅 `;
+msg+= `❥ 𝖑𝖊 𝖛𝖎𝖉𝖊 𝖊𝖘𝖙 𝖕𝖆𝖗𝖙𝖔𝖚𝖙 𝖒𝖊𝖒𝖊 𝖉𝖆𝖓𝖘 𝖓𝖔𝖘 𝖈𝖔𝖊𝖚𝖗𝖘 ♥シ `;
 			await message.reply({
 				body: msg,
 			});
@@ -96,7 +92,7 @@ msg+= `🦅══ 𝙳𝚊𝚟𝚒𝚍 ✰ 𝚋𝚘𝚝 ══🦅 `;
 				const guideBody = configCommand.guide?.en || "No guide available.";
 				const usage = guideBody.replace(/{p}/g, prefix).replace(/{n}/g, configCommand.name);
 
-const response = `✣━☆••𝙳𝚊𝚟𝚒𝚍✰𝙼𝚙••☆━✤      
+const response = `●═════❍═════●      
          
 
 ❐𝙉𝙖𝙢𝙚 ➢${configCommand.name}
@@ -128,4 +124,4 @@ function roleTextToString(roleText) {
 		default:
 			return "Unknown role";
 	}
-	}
+		}

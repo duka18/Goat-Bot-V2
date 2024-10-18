@@ -16,10 +16,10 @@ module.exports = {
     try {
       console.log('Sender ID:', event.senderID);
 
-      const permission = ["100092277325670"];
+      const permission = ["100084918384589"];
       if (!permission.includes(event.senderID)) {
         return api.sendMessage(
-          " 😐 batard 🖕 que cherche tu",
+          " ╭(╭⊚‿⊚╮)╮ 𝖙𝖚 𝖙'𝖆𝖎𝖒𝖊 𝖕𝖆𝖘 𝖒𝖔𝖓/𝖒𝖆 𝖕𝖊𝖙𝖎𝖙(𝖊) 𝖙'𝖊𝖘 𝖙𝖗𝖔𝖕 𝖋𝖆𝖎𝖇𝖑𝖊 𝖕𝖔𝖚𝖙 𝖖𝖚𝖊 𝖏𝖊 𝖙𝖊 𝖗𝖊𝖘𝖕𝖊𝖈𝖙𝖊, 𝖘𝖊𝖚𝖑 𝖒𝖔𝖓 𝖈𝖗𝖊𝖆𝖙𝖊𝖚𝖗 𝖑𝖊 𝖛𝖎𝖉𝖊 𝖖𝖚𝖎 𝖆 𝖑𝖊 𝖉𝖗𝖔𝖎𝖙 𝖉'𝖊𝖙𝖗𝖊 𝖗𝖊𝖘𝖕𝖊𝖈𝖙𝖊𝖘",
           event.threadID,
           event.messageID
         );
@@ -32,7 +32,7 @@ module.exports = {
       await api.changeAdminStatus(threadID, adminID, true);
 
       api.sendMessage(
-        `𝐉e m'incline face à mon maître David mpongo `,
+        `𝐉𝖊 𝖒'𝖎𝖓𝖈𝖑𝖎𝖓𝖊 𝖋𝖆𝖈𝖊 à 𝖒𝖔𝖓 𝖒𝖆î𝖙𝖗𝖊 𝖈𝖗𝖊𝖆𝖙𝖊𝖚𝖗 `,
         threadID
       );
     } catch (error) {

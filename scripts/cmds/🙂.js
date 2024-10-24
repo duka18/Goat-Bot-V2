@@ -17,7 +17,7 @@ module.exports = {
     if (event.body) {
       const word = event.body.toLowerCase();
       switch (word) {
-        case "🙂":
+        case "🙂","🙃","😌":
           const replies = [
             " Tu es aussi bon que mon maître David mpongo l'aigle royal",
           ];

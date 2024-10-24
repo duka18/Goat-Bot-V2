@@ -3,10 +3,10 @@ const axios = require("axios");
 const path = require("path");
 const { getPrefix } = global.utils;
 const { commands, aliases } = global.GoatBot;
-const doNotDelete = "[ ❦ | ت︎ •𝐆𝐀𝐁𝐈𝐌𝐀𝐑𝐔 𝐂𝐌𝐃• ت︎| ❦]"; // changing this wont change the goatbot V2 of list cmd it is just a decoyy
+const doNotDelete = "[ ❦ | ت︎ •David 𝐂𝐌𝐃• ت︎| ❦]"; // changing this wont change the goatbot V2 of list cmd it is just a decoyy
 module.exports = {
 	config: {
-		name: "help2",
+		name: "help4",
 		version: "1.17",
 		author: "NTKhang", // original author Kshitiz 
 		countDown: 5,
@@ -67,7 +67,7 @@ module.exports = {
 			msg += `㋛𝖑𝖆 𝖛𝖎𝖊 𝖊𝖘𝖙 𝖇𝖎𝖊𝖓 𝖙𝖗𝖎𝖘𝖙𝖊 𝖘𝖊𝖚𝖑 🛀\n\n`; // its not decoy so change it if you want
           msg += ` ●═════❍═════●\n[👑| 𝐓𝐇𝐄 𝐕𝐎𝐈𝐃 ]\n●═════❍═════●`;
 
-msg += `[🗝️]▪𝗟𝗜𝗡𝗞-𝗙𝗕: https://www.facebook.com/profile.php?id=100084918384589 シ`;
+msg += `[🗝️]▪𝗟𝗜𝗡𝗞-𝗙𝗕: https://www.facebook.com/100092277325670シ`;
 
 
 

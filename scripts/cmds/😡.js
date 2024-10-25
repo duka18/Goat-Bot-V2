@@ -15,6 +15,6 @@ onChat: async function({
 	message,
 	getLang
 }) {
-	if (event.body && event.body.toLowerCase() == "😡","🤬","😠","😤") return message.reply("tu feras quoi 😒");
+	if (event.body && event.body.toLowerCase() == "😡","🤬","😠","😤") return message.reply("");
 }
 };

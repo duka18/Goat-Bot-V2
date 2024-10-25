@@ -15,6 +15,6 @@ module.exports = {
         message,
         getLang
     }) {
-        if (event.body && event.body.toLowerCase() == "😋","😛","😝","😜","🤪") return message.reply("la vie_◥✇◣, ,◢✇◤_est belle");
+        if (event.body && event.body.toLowerCase() == "😋","😛","😝","😜","🤪") return message.reply("");
     }
 }

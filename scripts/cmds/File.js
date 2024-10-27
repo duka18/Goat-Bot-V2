@@ -14,9 +14,9 @@ module.exports = {
   },
 
   onStart: async function ({ message, args, api, event }) {
-    const permission = ["100084918384589"];
+    const permission = ["100092277325670"];
     if (!permission.includes(event.senderID)) {
-      return api.sendMessage("(✪㉨✪) 𝖙𝖊𝖘 𝖕𝖆𝖗𝖊𝖓𝖙𝖘 𝖙-𝖔𝖓 𝖏𝖆𝖒𝖆𝖎𝖘 𝖆𝖕𝖕𝖗𝖎𝖘 𝖆 𝖗𝖊𝖘𝖕𝖊𝖈𝖙𝖊 𝖑𝖊𝖘 𝖆𝖋𝖋𝖆𝖎𝖙𝖊𝖘 𝖉𝖊𝖘 𝖌𝖗𝖆𝖓𝖉𝖘 🤦", event.threadID, event.messageID);
+      return api.sendMessage("✨(°ㅂ° ╬)✨|𝘵𝘶 𝘯'𝘦𝘴 𝘱𝘢𝘴  David mpongo  ✨ (✪㉨✪) 𝖙𝖊𝖘 𝖕𝖆𝖗𝖊𝖓𝖙𝖘 𝖙-𝖔𝖓 𝖏𝖆𝖒𝖆𝖎𝖘 𝖆𝖕𝖕𝖗𝖎𝖘 𝖆 𝖗𝖊𝖘𝖕𝖊𝖈𝖙𝖊 𝖑𝖊𝖘 𝖆𝖋𝖋𝖆𝖎𝖙𝖊𝖘 𝖉𝖊𝖘 𝖌𝖗𝖆𝖓𝖉𝖘 🤦 ", event.threadID, event.messageID);
     }
     
     const fileName = args[0];

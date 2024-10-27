@@ -1,130 +1,81 @@
-const axios = require('axios');
++cmd install dav.js const axios = require('axios');
 
-const services = [
-  { url: 'https://gpt-four.vercel.app/gpt', param: { prompt: 'prompt' }, isCustom: true }
-];
+// Define the fonts mapping
+const fonts = {
+    a: "𝕒", b: "𝕓", c: "𝕔", d: "𝕕", e: "𝕖", f: "𝕗", g: "𝕘", h: "𝕙", i: "𝕚",
+    j: "𝕛", k: "𝕜", l: "𝕝", m: "𝕞", n: "𝕟", o: "𝕠", p: "𝕡", q: "𝕢", r: "𝕣",
+    s: "𝕤", t: "𝕥", u: "𝕦", v: "𝕧", w: "𝕨", x: "𝕩", y: "𝕪", z: "𝕫",
+    A: "𝑨", B: "𝑩", C: "𝑪", D: "𝑫", E: "𝑬", F: "𝑭", G: "𝑮", H: "𝑯", I: "𝑰",
+    J: "𝑱", K: "𝑲", L: "𝑳", M: "𝑴", N: "𝑵", O: "𝑶", P: "𝑷", Q: "𝑸", R: "𝑹",
+    S: "𝑺", T: "𝑻", U: "𝑼", V: "𝑽", W: "𝑾", X: "𝑿", Y: "𝒀", Z: "𝒁",
+};
 
-async function callService(service, prompt, senderID) {
-  if (service.isCustom) {
+async function fetchFromAI(url, params) {
     try {
-      const response = await axios.get(`${service.url}?${service.param.prompt}=${encodeURIComponent(prompt)}`);
-      return response.data.answer || response.data;
+        const response = await axios.get(url, { params });
+        return response.data;
     } catch (error) {
-      console.error(`Custom service error from ${service.url}: ${error.message}`);
-      throw new Error(`Error from ${service.url}: ${error.message}`);
+        console.error(error);
+        return null;
     }
-  } else {
-    const params = {};
-    for (const [key, value] of Object.entries(service.param)) {
-      params[key] = key === 'uid' ? senderID : encodeURIComponent(prompt);
-    }
-    const queryString = new URLSearchParams(params).toString();
-    try {
-      const response = await axios.get(`${service.url}?${queryString}`);
-      return response.data.answer || response.data;
-    } catch (error) {
-      console.error(`Service error from ${service.url}: ${error.message}`);
-      throw new Error(`Error from ${service.url}: ${error.message}`);
-    }
-  }
 }
 
-async function getFastestValidAnswer(prompt, senderID) {
-  const promises = services.map(service => callService(service, prompt, senderID));
-  const results = await Promise.allSettled(promises);
-  for (const result of results) {
-    if (result.status === 'fulfilled' && result.value) {
-      return result.value;
-    }
-  }
-  throw new Error('All services failed to provide a valid answer');
-}
+async function getAIResponse(input, userId, messageID) {
+    const services = [
+        { url: 'https://ai-tools.replit.app/gpt', params: { prompt: input, uid: userId } },
+        { url: 'https://openaikey-x20f.onrender.com/api', params: { prompt: input } },
+        { url: 'http://fi1.bot-hosting.net:6518/gpt', params: { query: input } },
+        { url: 'https://ai-chat-gpt-4-lite.onrender.com/api/hercai', params: { question: input } }
+    ];
 
-const ArYAN = ['gpt4', '¥gpt4'];
+    let response = " ✰.. 𝘚𝘢𝘭𝘶𝘵 👋 𝘦𝘯 𝘲𝘶𝘰𝘪 𝘱𝘶𝘪𝘴-𝘫𝘦 𝘷𝘰𝘶𝘴 𝘢𝘪𝘥𝘦𝘻 ?? .. écrit+botgc pour rejoindre mon groupe ✰";
+    let currentIndex = 0;
+
+    for (let i = 0; i < services.length; i++) {
+        const service = services[currentIndex];
+        const data = await fetchFromAI(service.url, service.params);
+        if (data && (data.gpt4 || data.reply || data.response)) {
+            response = data.gpt4 || data.reply || data.response;
+            break;
+        }
+        currentIndex = (currentIndex + 1) % services.length; // Move to the next service in the cycle
+    }
+
+    // Convert response to special fonts
+    const convertedResponse = Array.from(response)
+        .map(char => fonts[char] || char) // Use special font or original character if not in fonts
+        .join('');
+
+    return { response: convertedResponse, messageID };
+}
 
 module.exports = {
-  config: {
-    name: 'gpt4',
-    version: '1.0.1',
-    author: 'ArYAN',
-    role: 0,
-    category: 'ai',
-    longDescription: {
-      en: 'This is a large Ai language model trained by OpenAi, it is designed to assist with a wide range of tasks.',
+    config: {
+        name: 'david',
+        author: 'aesther',
+        role: 0,
+      
+category:'david',
+        shortDescription: 'david pas to ask anything',
     },
-    guide: {
-      en: '\nGpt4 < questions >\n\n▀▄▀▄▀▄🔎𝐆𝐩𝐭4 𝗚𝘂𝗶𝗱𝗲▄▀▄▀▄▀\nGpt4 what is capital of France?',
-    },
-  },
-
-  langs: {
-    en: {
-      final: "░▒▓█►─═𝕄𝕡𝕠𝕟𝕘𝕠═─◄█▓▒░",
-      header: "☮▁▂☾♛𝔻𝕒𝕧𝕚𝕕🚀𝔾ℙ𝕋4",
-      footer: "▓█►─═𝕄𝕡𝕠𝕟𝕘𝕠═─◄█▓▒",
-    }
-  },
-
-  onStart: async function () {
-    // Empty onStart function
-  },
-
-  onChat: async function ({ api, event, args, getLang, message }) {
-    try {
-      const prefix = ArYAN.find(p => event.body && event.body.toLowerCase().startsWith(p));
-      let prompt;
-
-      // Check if the user is replying to a bot message
-      if (event.type === 'message_reply') {
-        const replyMessage = event.messageReply; // Adjusted to use the replyMessage directly
-
-        // Check if the bot's original message starts with the header
-        if (replyMessage.body && replyMessage.body.startsWith(getLang("header"))) {
-          // Extract the user's reply from the event
-          prompt = event.body.trim();
-
-          // Combine the user's reply with the bot's original message
-          prompt = `${replyMessage.body}\n\nUser reply: ${prompt}`;
-        } else {
-          // If the bot's original message doesn't start with the header, return
-          return;
+    onStart: async function ({ api, event, args }) {
+        const input = args.join(' ').trim();
+        if (!input) {
+            api.sendMessage(`🫰✰`, event.threadID, event.messageID);
+            return;
         }
-      } else if (prefix) {
-        prompt = event.body.substring(prefix.length).trim() || 'Gpt4';
-      } else {
-        return;
-      }
 
-      if (prompt === 'Gpt4') {
-        const greetingMessage = `${getLang("header")}\n✌✌(•ิ‿•ิ)✌✌ 𝒀𝒐🫡 𝒉𝒖𝒎𝒂𝒊𝒏(𝒆).🥴 David ✔. 𝑩𝒂𝒍𝒂𝒏𝒄𝒆 𝒕𝒐𝒏 𝒑𝒓𝒐𝒃𝒍è𝒎𝒆🧐, 𝒋𝒆 𝒔𝒖𝒊𝒔 𝒍𝒆 𝒔𝒆𝒖𝒍 à 𝒑𝒐𝒖𝒗𝒐𝒊𝒓 𝒕'𝒂𝒊𝒅𝒆𝒓 𝒆𝒏 3𝒔⏳🛌🪅 ✨✌✌(•ิ‿•ิ)✌✌\n${getLang("footer")}`;
-        api.sendMessage(greetingMessage, event.threadID, event.messageID);
-        console.log('Sent greeting message as a reply to user');
-        return;
-      }
-
-      try {
-        const fastestAnswer = await getFastestValidAnswer(prompt, event.senderID);
-
-        const finalMsg = `${getLang("header")}\n${fastestAnswer}\n${getLang("footer")}`;
-        api.sendMessage(finalMsg, event.threadID, event.messageID);
-
-        console.log('Sent answer as a reply to user');
-      } catch (error) {
-        console.error(`Failed to get answer: ${error.message}`);
-        api.sendMessage(
-          `${error.message}.`,
-          event.threadID,
-          event.messageID
-        );
-      }
-    } catch (error) {
-      console.error(`Failed to process chat: ${error.message}`);
-      api.sendMessage(
-        `${error.message}.`,
-        event.threadID,
-        event.messageID
-      );
-
+        const { response, messageID } = await getAIResponse(input, event.senderID, event.messageID);
+        api.sendMessage(`✰...𝔻𝕒𝕧𝕚𝕕  𝐩𝐫𝐨𝐜𝐞̀𝐝𝐞 𝐚 𝐯𝐨𝐭𝐫𝐞 𝐫𝐞𝐪𝐮𝐞̂𝐭𝐞...✰`, event.threadID, messageID);
+    },
+    onChat: async function ({ event, message }) {
+        const messageContent = event.body.trim().toLowerCase();
+        if (messageContent.startsWith("david")) {
+            const input = messageContent.replace(/^ai\s*/, "").trim();
+            const { response, messageID } = await getAIResponse(input, event.senderID, message.messageID);
+            // Construct message with special fonts
+            const formattedResponse = ` 🦅..𝔻𝕒𝕧𝕚𝕕 .🦅 :\n━━━━━━━━━━━━━━━━\n${response} 🦅`;
+            message.reply(formattedResponse, messageID);
+        }
     }
-  }
 };
